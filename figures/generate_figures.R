@@ -65,8 +65,6 @@ write_source <- function(df, stem) {
 
 clean_pathway <- function(x) {
   x |>
-    gsub("HALLMARK_", "", x = _) |>
-    gsub("PTLD_obstructive_IFN", "PTLD_IFN", x = _) |>
     gsub("IFNa", "IFN-alpha", x = _) |>
     gsub("IFNg", "IFN-gamma", x = _) |>
     gsub("IFN_antigen_presentation", "Antigen presentation", x = _) |>
@@ -75,8 +73,8 @@ clean_pathway <- function(x) {
 
 # Figure 1: infection-stage enrichment across MTB, NTM and related contrasts.
 fg1 <- read.csv("results/GSE276060_fgsea.csv", check.names = FALSE) |>
-  filter(pathway %in% c("HALLMARK_IFNa", "HALLMARK_IFNg",
-                        "IFN_antigen_presentation", "PTLD_obstructive_IFN"),
+  filter(pathway %in% c("IFNa", "IFNg",
+                        "IFN_antigen_presentation", "PTLD_IFN"),
          contrast %in% c("MTB_vs_Ctl", "NTM_vs_Ctl", "MTB_vs_NTM")) |>
   mutate(
     pathway_label = clean_pathway(pathway),
@@ -106,7 +104,7 @@ save_pub(p1, "Figure1_infection_stage", 183, 92)
 
 # Figure 2: paired smoke-amplification evidence.
 fg2 <- read.csv("results/EMTAB17246_fgsea_PTLD_IFN.csv", check.names = FALSE) |>
-  filter(pathway %in% c("PTLD_obstructive_IFN", "HALLMARK_IFNa", "HALLMARK_IFNg"),
+  filter(pathway %in% c("PTLD_IFN", "IFNa", "IFNg"),
          contrast %in% c("Mtb_Air", "Mtb_Smoke", "Mtb_int")) |>
   mutate(
     pathway_label = factor(clean_pathway(pathway),

@@ -62,15 +62,15 @@ cat("上调:", sum(de$adj.P.Val < 0.05 & de$logFC > 0), " 下调:", sum(de$adj.P
 
 # ---------- fgsea ----------
 gs_sym <- list(
-  PTLD_obstructive_IFN = c("IFI6","OAS1","OAS2","ISG15","MX1","MX2","IFIT1","IFIT2","IFIT3",
+  PTLD_IFN = c("IFI6","OAS1","OAS2","ISG15","MX1","MX2","IFIT1","IFIT2","IFIT3",
                            "STAT1","STAT2","IRF7","IRF9","GBP1","GBP2","GBP5","OASL","IFI44",
                            "IFI27","IFI35","IFITM1","IFITM3","RSAD2","USP18","XAF1","BST2",
                            "EPSTI1","DDX58","IFIH1","EIF2AK2"),
-  HALLMARK_IFNa = c("ISG15","MX1","OAS1","OAS2","IFIT1","IFIT2","IFIT3","IFI6","IFI27","IFI44",
+  IFNa = c("ISG15","MX1","OAS1","OAS2","IFIT1","IFIT2","IFIT3","IFI6","IFI27","IFI44",
                     "IFI44L","IFITM1","IFITM2","IFITM3","RSAD2","USP18","XAF1","BST2","EPSTI1",
                     "EIF2AK2","GBP1","GBP2","DDX58","IFIH1","IRF7","IRF9","STAT1","STAT2",
                     "SAMD9","SAMD9L","PARP9","DTX3L","TRIM22","TRIM25","TNFSF10","ISG20","OASL"),
-  HALLMARK_IFNg = c("STAT1","STAT2","IRF1","IRF2","IRF7","IRF8","IRF9","GBP1","GBP2","GBP4","GBP5",
+  IFNg = c("STAT1","STAT2","IRF1","IRF7","IRF9","GBP1","GBP2","GBP5",
                     "CXCL9","CXCL10","CXCL11","HLA-A","HLA-B","HLA-C","TAP1","TAP2","B2M",
                     "PSMB8","PSMB9","PSME1","PSME2","NLRC5","CIITA","IFITM1","IFITM3","OAS1",
                     "OAS2","OASL","MX1","MX2","ISG15","ISG20","IFI35","SOCS1","SOCS3",
