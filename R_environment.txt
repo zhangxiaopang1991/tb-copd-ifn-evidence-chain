@@ -1,0 +1,7 @@
+R 4.6.1
+edgeR 4.10.1
+limma 3.68.4
+fgsea 1.38.0
+Matrix 1.7.5
+dplyr
+tidyr
