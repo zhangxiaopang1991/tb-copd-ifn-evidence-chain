@@ -1,0 +1,6 @@
+accession	role	assay	input_files	public_source
+GSE276060	infection-stage bulk RNA-seq	bulk RNA-seq	parse_gse276060.py reads the local series/expression files	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE276060
+E-MTAB-17246	paired smoke/mycobacteria model	bulk RNA-seq	EMTAB17246.sdrf.txt and per-sample .count files	https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-17246
+GSE192483	lesion-level single-cell	10x single-cell	11 filtered_feature_bc_matrix.h5 files	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE192483
+GSE47460	chronic-stage bulk + FEV1	two-platform microarray	platform matrices and sample_meta_final.tsv	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47460
+GSE136831	chronic-stage single-cell	10x single-cell	raw mtx, gene IDs, barcodes, metadata table	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE136831

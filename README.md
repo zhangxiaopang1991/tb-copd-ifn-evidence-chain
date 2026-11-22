@@ -1,26 +1,22 @@
-# TB-COPD interferon evidence chain: reproducible analysis package
+# Interferon-related gene expression and lung function in COPD
 
-Scope: this package contains the analysis and figure-generation scripts used for the reported five-dataset reconstruction. It does not redistribute the original public datasets and is not yet a one-command workflow. Reproduction requires downloading the accession-level source data and preserving the input filenames and directory layout expected by each script.
+Analysis code and selected aggregate verification tables for the November 2026 manuscript revision. The earlier five-dataset release is at [v1.0.0-submission](https://github.com/zhangxiaopang1991/tb-copd-ifn-evidence-chain/tree/v1.0.0-submission). The current scripts add two external lung series and two blood cohorts, a STAT2 coverage audit, and three smoking codings in the specification grid. See Evidence/Analysis_changes.txt.
 
-Execution order:
-1. analyze_gse276060.R
-2. recheck_EMTAB17246.R
-3. GSE192483/analyze_gse192483.py
-4. GSE47460/analyze_gse47460.R and sensitivity_ifn_covariates.R
-5. GSE136831/aggregate_pseudobulk_counts.py, run_pseudobulk_edgeR.R, analyze_cell_composition.py and test_disease_celltype_interaction.py
-6. figures/generate_figures.R
+## Input sources
 
-Software: R 4.6.1 (edgeR 4.10.1, limma 3.68.4, fgsea 1.38.0); Python 3.12.14 (scanpy 1.12.4, anndata 0.13.3).
+- NCBI GEO: GSE47460, GSE76925, GSE8581, GSE42057, GSE54837, GSE276060, GSE192483 and GSE136831.
+- EMBL-EBI BioStudies/ArrayExpress: E-MTAB-17246.
 
-Inference uses sample, donor, patient or subject units; cells are not independent replicates.
+The public code archive contains aggregate results and no participant-level input tables. Obtain source records from the original repositories. The computational supplement accompanying the manuscript includes the exact model inputs and the upstream sample-level audit tables. The legacy workflows were written for an existing analysis workspace and may require path configuration. No raw-to-results run for all nine datasets is claimed.
 
-Key analysis boundaries:
-- The five datasets are analysed separately. No pooled cross-platform meta-analysis is performed.
-- E-MTAB-17246 uses `none_Air` as the reference level. The Mtb-by-smoke interaction is the difference-in-differences `(Mtb_Smoke - Mtb_Air) - (none_Smoke - none_Air)`.
-- GSE192483 cell-level summaries are descriptive; formal lesion comparisons use patient-level H/L pairs.
-- GSE47460 disease and FEV1 models use complete cases for included covariates. Remaining expression-matrix missing values after gene filtering are row-mean imputed.
-- GSE136831 score, count-based pseudobulk and composition analyses answer different questions and should not be interpreted as interchangeable validation layers.
+## Entry points
 
-Frozen submission version: `v1.0.0-submission`.
+From Code/, run python Figure2.py to regenerate Figure 2 from the bundled S12 and S13 aggregate tables. Matplotlib and pandas are required.
 
-License: MIT. See `LICENSE`.
+Prepare the GSE47460 gene-level matrix and metadata in panel_inputs/GSE47460_gene_matrix.tsv and panel_inputs/sample_meta_final.tsv, then run python audit.py panel_inputs lung_model_rerun/reference_S6.csv and python rerun_grid.py. The archived setup scripts are in five_dataset_scripts/GSE47460/.
+
+The model verification entry points are lung_model_rerun/rerun_lung_models.py and blood_model_rerun/rerun_blood_models.py. They expect lung_model_rerun/GSE47460_derived_inputs.csv and blood_model_rerun/inputs/GSE42057.csv plus GSE54837.csv, respectively. Use the reference tables, environment files and dependency pins in those folders.
+
+For the additional lung series, run lung111/case_only_check.py with the GSE76925 series matrix and GPL10558 annotation in its GEO input directory. Run lung15/check_GSE8581.py with the GSE8581 series matrix, GPL570 annotation and clinical supplemental PDF from PMC2645534. For the STAT2 coverage audit, check_stat2.py uses GSE47460 platform annotations, probe maps, series matrices and sample SOFT files. The archived contextual workflows are documented in five_dataset_scripts/README.md.
+
+The legacy MIT licence is included with the archived five-dataset scripts.
